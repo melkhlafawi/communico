@@ -1,0 +1,29 @@
+########################################################################
+# This file is used as a template for the docker-compose.yaml file     #
+# you will find at the root of your project when running `communico up` #
+########################################################################
+
+version: "3.0"
+services:
+  actions:
+    build:
+      context: ./actions
+      args:
+        RASA_SDK_IMAGE: ${IMAGES_CURRENT_ACTIONS}
+    container_name: communico-actions
+    networks: ["communico-network"]
+    restart: always
+    ports:
+      - "5055:5055"
+    volumes:
+      - "./actions:/app/actions"
+    command:
+      - start
+      - --debug
+      - --actions
+      - actions
+    env_file:
+      - .env
+
+networks:
+  communico-network: {}

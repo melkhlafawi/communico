@@ -1,0 +1,4 @@
+/**/__pycache__/
+/**/*.pyc
+/commnico-db
+.pytest_cache
